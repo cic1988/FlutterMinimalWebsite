@@ -3,6 +3,8 @@ import 'package:minimal/pages/pages.dart';
 import 'package:minimal/routes.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import 'pages/pages.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -29,7 +31,8 @@ class MyApp extends StatelessWidget {
         return Routes.fadeThrough(settings, (context) {
           switch (settings.name) {
             case Routes.home:
-              return ListPage();
+              //return ListPage();
+              return HotRankList();
               break;
             case Routes.post:
               return PostPage();
