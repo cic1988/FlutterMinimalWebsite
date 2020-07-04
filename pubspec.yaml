@@ -8,15 +8,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  #responsive_framework:
-  #  path: ../
-  # Uncomment to build standalone project.
   responsive_framework:
     git:
       url: https://github.com/Codelessly/ResponsiveFramework.git
       ref: master
   google_fonts: ^1.1.0
   animations: ^1.0.0+5
+  flutter_dotenv: ^2.1.0
+  fluro: "^1.6.3"
+  http: ^0.12.1
+  url_launcher: "^5.4.11"
+  universal_html: ^1.2.2
+  flutter_widget_from_html_core:
+    git:
+      url: https://github.com/daohoangson/flutter_widget_from_html.git
+      ref: master
+      path: packages/core
 
 dev_dependencies:
   flutter_test:
@@ -34,4 +41,5 @@ flutter_icons:
 flutter:
   uses-material-design: true
   assets:
+    - .env
     - assets/images/

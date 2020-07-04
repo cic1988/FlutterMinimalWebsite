@@ -1,20 +1,35 @@
-import 'package:animations/animations.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 
-class Routes {
-  static const String home = "/";
-  static const String post = "post";
-  static const String style = "style";
+import 'pages/pages.dart';
 
-  static Route<T> fadeThrough<T>(RouteSettings settings, WidgetBuilder page,
-      {int duration = 300}) {
-    return PageRouteBuilder<T>(
-      settings: settings,
-      transitionDuration: Duration(milliseconds: duration),
-      pageBuilder: (context, animation, secondaryAnimation) => page(context),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        return FadeScaleTransition(animation: animation, child: child);
-      },
-    );
+class Routes {
+  static Router router = Router();
+
+  static String home = "/";
+  static String question = "/question";
+
+  static var homeHandler = Handler(
+      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    return HotRankList();
+  });
+
+  static var questionHandler = Handler(
+      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    int id = int.parse(params["id"]?.first);
+
+    if (id <= 0) {
+      return Container();
+    }
+    return QuestionOverviewPage(id: id);
+  });
+
+  static void configureRoutes() {
+    router.notFoundHandler = Handler(
+        handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      print("ROUTE WAS NOT FOUND !!!");
+    });
+    router.define(home, handler: homeHandler);
+    router.define(question, handler: questionHandler);
   }
 }

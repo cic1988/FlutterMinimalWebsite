@@ -2,6 +2,8 @@ import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:minimal/components/color.dart';
 
+const String fontFamily = "Google Sans";
+
 // Simple
 TextStyle headlineTextStyle = GoogleFonts.montserrat(
     textStyle: TextStyle(
@@ -25,3 +27,5 @@ TextStyle buttonTextStyle = GoogleFonts.montserrat(
 
 // Advanced
 // TODO: Add additional text styles.
+
+TextStyle bodyLinkTextStyle = bodyTextStyle.copyWith(color: primary);

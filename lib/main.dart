@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:minimal/pages/pages.dart';
 import 'package:minimal/routes.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'pages/pages.dart';
-
-void main() {
+Future main() async {
+  await DotEnv().load('.env');
+  Routes.configureRoutes();
   runApp(MyApp());
 }
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       builder: (context, widget) => ResponsiveWrapper.builder(
           BouncingScrollWrapper.builder(context, widget),
-          maxWidth: 1200,
+          maxWidth: 1000,
           minWidth: 450,
           defaultScale: true,
           breakpoints: [
@@ -27,25 +27,7 @@ class MyApp extends StatelessWidget {
           ],
           background: Container(color: Color(0xFFF5F5F5))),
       initialRoute: Routes.home,
-      onGenerateRoute: (RouteSettings settings) {
-        return Routes.fadeThrough(settings, (context) {
-          switch (settings.name) {
-            case Routes.home:
-              //return ListPage();
-              return HotRankList();
-              break;
-            case Routes.post:
-              return PostPage();
-              break;
-            case Routes.style:
-              return TypographyPage();
-              break;
-            default:
-              return null;
-              break;
-          }
-        });
-      },
+      onGenerateRoute: Routes.router.generator,
       theme: Theme.of(context).copyWith(platform: TargetPlatform.android),
       debugShowCheckedModeBanner: false,
     );

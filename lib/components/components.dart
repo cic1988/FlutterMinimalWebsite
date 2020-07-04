@@ -3,3 +3,7 @@ export 'color.dart';
 export 'spacing.dart';
 export 'text.dart';
 export 'typography.dart';
+export 'futurecontainer.dart';
+export 'columnlist.dart';
+export 'blocks.dart';
+export 'icons.dart';

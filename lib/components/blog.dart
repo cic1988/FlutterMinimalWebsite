@@ -290,8 +290,8 @@ class ListItem extends StatelessWidget {
           child: Container(
             margin: marginBottom24,
             child: ReadMoreButton(
-              onPressed: () => Navigator.pushNamed(context, Routes.post),
-            ),
+                //onPressed: () => Navigator.pushNamed(context, Routes.post),
+                ),
           ),
         ),
       ],
@@ -320,14 +320,14 @@ class MenuBar extends StatelessWidget {
               GestureDetector(
                 onTap: () => Navigator.popUntil(
                     context, ModalRoute.withName(Navigator.defaultRouteName)),
-                child: Text("MINIMAL",
+                child: Text("HOT TOPICS CHINA",
                     style: GoogleFonts.montserrat(
                         color: textPrimary,
                         fontSize: 30,
                         letterSpacing: 3,
                         fontWeight: FontWeight.w500)),
               ),
-              Flexible(
+              /*Flexible(
                 child: Container(
                   alignment: Alignment.centerRight,
                   child: Wrap(
@@ -387,7 +387,7 @@ class MenuBar extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
+              ),*/
             ],
           ),
         ),
