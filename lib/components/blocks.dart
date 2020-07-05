@@ -3,7 +3,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
 import 'package:minimal/components/components.dart';
 import 'package:minimal/utils/utils.dart';
@@ -153,8 +152,7 @@ class AnswerBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final content = answer.contentDe.replaceAll('\\"', '"');
-    final content = answer.content.replaceAll('\\"', '"');
+    final content = answer.contentDe.replaceAll('\\"', '"');
 
     return Container(
       width: double.infinity,
@@ -184,10 +182,108 @@ class AnswerBlock extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 16),
-                  child: HtmlWidget(content, buildAsync: true),
+                  child: ZhihuHtml(content: content),
                 ),
                 Padding(
                     padding: EdgeInsets.all(5), child: buildLikeBlock(answer))
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class FooterV1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: backgroundDark,
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: ResponsiveRowColumn(
+        rowColumn: !ResponsiveWrapper.of(context).isMobile,
+        children: [
+          ResponsiveRowColumnItem(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
+              child: Image.asset("assets/images/flutter_logo_mono.png",
+                  height: 100, fit: BoxFit.contain),
+            ),
+          ),
+          ResponsiveRowColumnItem(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                RichText(
+                  textAlign: TextAlign.left,
+                  text: TextSpan(
+                    style: bodyTextStyle.copyWith(
+                        fontSize: 14, color: Colors.white, height: 2),
+                    children: [
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl(
+                                  "https://groups.google.com/forum/#!forum/flutter-dev");
+                            },
+                          text: "flutter-dev@"),
+                      TextSpan(text: "  •  "),
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl("https://flutter.dev/tos");
+                            },
+                          text: "terms"),
+                      TextSpan(text: "  •  "),
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl("https://flutter.dev/security");
+                            },
+                          text: "security"),
+                      TextSpan(text: "  •  "),
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl(
+                                  "https://www.google.com/intl/en/policies/privacy");
+                            },
+                          text: "privacy"),
+                      TextSpan(text: "  •  "),
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl("https://flutter-es.io/");
+                            },
+                          text: "español"),
+                      TextSpan(text: "  •  "),
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              openUrl("https://flutter.cn/");
+                            },
+                          text: "社区中文资源"),
+                    ],
+                  ),
+                ),
+                RichText(
+                  textAlign: TextAlign.left,
+                  text: TextSpan(
+                      style: bodyTextStyle.copyWith(
+                          fontSize: 14, color: Colors.white, height: 1),
+                      children: [
+                        TextSpan(text: '\n'),
+                        TextSpan(
+                            text:
+                                "Except as otherwise noted, this work is licensed under a Creative Commons Attribution 4.0 International License, and code samples are licensed under the BSD License.",
+                            style: bodyTextStyle.copyWith(
+                                fontSize: 10, color: Colors.white)),
+                        TextSpan(text: '\n'),
+                        TextSpan(text: '\n'),
+                        TextSpan(text: '\n'),
+                      ]),
+                )
               ],
             ),
           )

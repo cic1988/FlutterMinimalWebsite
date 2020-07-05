@@ -15,7 +15,6 @@ dependencies:
   google_fonts: ^1.1.0
   animations: ^1.0.0+5
   flutter_dotenv: ^2.1.0
-  fluro: "^1.6.3"
   http: ^0.12.1
   url_launcher: "^5.4.11"
   universal_html: ^1.2.2

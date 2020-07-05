@@ -3,7 +3,6 @@ import 'package:minimal/model/hotrankitem.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'dart:io';
 
 class API {
   static Future<List<RankItem>> topics() async {
@@ -18,7 +17,9 @@ class API {
 
       for (int i = 0; i < result.length; i++) {
         try {
-          topics.add(RankItem.fromJson(result[i]));
+          RankItem item = RankItem.fromJson(result[i]);
+          item.rank = (i + 1).toString();
+          topics.add(item);
         } catch (e) {
           print('Something unknown: $i went wrong');
         }
@@ -43,35 +44,6 @@ class API {
         print('Something unknown went wrong');
       }
     }
-    return item;
-  }
-
-  static Future<AnswerItem> answer(int id) async {
-    final header = {
-      'content-type': 'text/html; charset=utf-8',
-    };
-    final queryParameters = {
-      'include': 'voteup_count,comment_count,content',
-    };
-
-    final url = Uri.https('www.zhihu.com', '/api/v4/answers/' + id.toString());
-
-    //final res = http.get('https://google.de', headers: header);
-    final res =
-        await http.get("https://www.zhihu.com/api/v4/answers/" + '1111111');
-
-    AnswerItem item;
-
-    print(res);
-
-    /*if (res.statusCode == 200) {
-      final result = json.decode(res.body);
-      try {
-        item = AnswerItem.fromJsonV1(result);
-      } catch (e) {
-        print('Something unknown went wrong');
-      }
-    }*/
     return item;
   }
 }

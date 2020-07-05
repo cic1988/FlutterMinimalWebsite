@@ -5,23 +5,20 @@ import 'package:minimal/api/zhihu.dart';
 import 'package:minimal/components/components.dart';
 
 class QuestionOverviewPage extends StatelessWidget {
+  static const routeName = '/question';
+
   final int id;
 
   QuestionOverviewPage({this.id});
 
   Widget buildQuestionCard() {
-    //return FutureBuilder<QuestionItem>(
-    return FutureBuilder<AnswerItem>(
+    return FutureBuilder<QuestionItem>(
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
             return Center(child: CircularProgressIndicator());
           default:
             {
-              return Container();
-              /*return SingleChildScrollView(
-                  child:
-                      Column(children: [AnswerBlock(answer: snapshot.data)]));
               List<AnswerItem> answers = snapshot.data.answers;
 
               return SingleChildScrollView(
@@ -34,12 +31,11 @@ class QuestionOverviewPage extends StatelessWidget {
                 AnswerBlock(answer: answers[2]),
                 AnswerBlock(answer: answers[3]),
                 AnswerBlock(answer: answers[4]),
-              ]));*/
+              ]));
             }
         }
       },
-      //future: API.question(this.id),
-      future: API.answer(1281652746),
+      future: API.question(this.id),
     );
   }
 
@@ -50,7 +46,8 @@ class QuestionOverviewPage extends StatelessWidget {
             child: Column(children: <Widget>[
               MenuBar(),
               SizedBox(height: 20),
-              buildQuestionCard()
+              buildQuestionCard(),
+              Footer()
             ])));
   }
 

@@ -5,7 +5,6 @@ import 'package:minimal/components/color.dart';
 import 'package:minimal/components/spacing.dart';
 import 'package:minimal/components/text.dart';
 import 'package:minimal/components/typography.dart';
-import 'package:minimal/routes.dart';
 
 class ImageWrapper extends StatelessWidget {
   final String image;

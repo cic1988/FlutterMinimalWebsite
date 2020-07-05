@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:minimal/model/hotrankitem.dart';
 import 'package:minimal/api/zhihu.dart';
 import 'package:minimal/components/components.dart';
+import 'package:minimal/pages/pages.dart';
 
 class HotRankList extends StatefulWidget {
+  static const routeName = '/';
+
   @override
   HotRankListState createState() => new HotRankListState();
 }
@@ -17,8 +20,7 @@ class HotRankListState extends State<HotRankList> {
             Container(
               child: Text(rank,
                   style: TextStyle(
-                      color:
-                          int.parse(rank) <= 3 ? Colors.red : Colors.green,
+                      color: int.parse(rank) <= 3 ? Colors.red : Colors.green,
                       fontSize: 18.0)),
               alignment: Alignment.topLeft,
             )
@@ -34,7 +36,11 @@ class HotRankListState extends State<HotRankList> {
       ),
       child: new FlatButton(
           onPressed: () {
-            Navigator.pushReplacementNamed(context,  '/question?id=${item.id}');
+            Navigator.pushNamed(
+              context,
+              QuestionOverviewPage.routeName,
+              arguments: item.id,
+            );
           },
           child: new Container(
             padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
@@ -109,7 +115,8 @@ class HotRankListState extends State<HotRankList> {
             margin: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: MenuBar()),
         SizedBox(height: 20),
-        Expanded(child: rankList())
+        Expanded(child: rankList()),
+        Footer()
       ]),
       backgroundColor: Colors.white,
     );
